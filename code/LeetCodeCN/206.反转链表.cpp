@@ -67,53 +67,9 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-// class Solution {
-// public:
-//     ListNode* reverseList(ListNode* head) {
-//         if (head == nullptr) {
-//             return nullptr;
-//         }
 
-//         ListNode *p = head;
-//         ListNode *p1, *p2;
-//         p1 = new ListNode(p->val);
-//         p2 = p1;
-//         while (p != nullptr) {
-//             if (p->next == nullptr) {
-//                 break;
-//             }
-
-//             p = p->next;
-//             p2 = new ListNode(p->val);
-//             p2->next = p1;
-//             p1 = p2;
-//         }
-//         return p2;
-//     }
-// };
-
-// class Solution {
-// public:
-//     ListNode* reverseList(ListNode* head) {
-//         if (head == nullptr) {
-//             return nullptr;
-//         }
-
-//         ListNode *p, *pre, *next;
-//         p = next = head;
-//         pre = nullptr;
-//         while (next != nullptr) {
-//             next = next->next;
-//             p->next = pre;
-//             pre = p;
-//             if (next != nullptr) {
-//                 p = next;
-//             }
-//         }
-//         return p;
-//     }
-// };
-
+// 迭代解法
+/*
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
@@ -133,6 +89,22 @@ public:
         return prev;
     }
 };
+*/
+
+// 递归解法
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) {
+            return head;
+        }
+        ListNode *p = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return p;
+    }
+};
+
 
 // @lc code=end
 

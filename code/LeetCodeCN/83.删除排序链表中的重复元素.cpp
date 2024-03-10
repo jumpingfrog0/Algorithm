@@ -54,49 +54,49 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-// class Solution {
-// public:
-//     ListNode* deleteDuplicates(ListNode* head) {
-//         if (head == nullptr) {
-//             return nullptr;
-//         }
-
-//         ListNode *p, *p1, *list;
-//         p = p1 = head;
-//         list = p1;
-//         while (p != nullptr) {
-//             if (p->next == nullptr) {
-//                 break;
-//             }
-
-//             ListNode *next = p->next;
-//             if (p->val == next->val) {
-//                 p = next;
-//             } else {
-//                 p1->next = next;
-//                 p1 = next;
-//                 p = p->next;
-//             }
-//         }
-//         p1->next = nullptr;
-//         return list;
-//     }
-// };
-
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        ListNode *cur = head;
-        while (cur != nullptr && cur->next != nullptr) {
-            if (cur->val == cur->next->val) {
-                cur->next = cur->next->next;
+        if (head == nullptr) {
+            return nullptr;
+        }
+
+        ListNode *p, *p1, *list;
+        p = p1 = head;
+        list = p1;
+        while (p != nullptr) {
+            if (p->next == nullptr) {
+                break;
+            }
+
+            ListNode *next = p->next;
+            if (p->val == next->val) {
+                p = next;
             } else {
-                cur = cur->next;
+                p1->next = next;
+                p1 = next;
+                p = p->next;
             }
         }
-        return head;
+        p1->next = nullptr;
+        return list;
     }
 };
+
+// class Solution {
+// public:
+//     ListNode* deleteDuplicates(ListNode* head) {
+//         ListNode *cur = head;
+//         while (cur != nullptr && cur->next != nullptr) {
+//             if (cur->val == cur->next->val) {
+//                 cur->next = cur->next->next;
+//             } else {
+//                 cur = cur->next;
+//             }
+//         }
+//         return head;
+//     }
+// };
 
 // @lc code=end
 
